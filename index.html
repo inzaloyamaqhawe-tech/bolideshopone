@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Shop Bolide — Genuine Energy, Fibre & RF Hardware</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bolide-pink:#e91e8c;--bolide-orange:#ff6b35;--bolide-gradient:linear-gradient(135deg,#e91e8c 0%,#ff6b35 100%);--bolide-dark:#1a1a2e;--bolide-gray:#6b7280;--bolide-light:#f8f9fa;--bolide-border:#e5e7eb}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{max-width:100vw;overflow-x:hidden;font-family:'Inter',sans-serif;background:#fff;color:#111;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto}
+
+/* Header */
+.header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid var(--bolide-border);padding:0 16px;height:60px;display:flex;align-items:center;justify-content:space-between;max-width:100vw}
+.logo-img{height:32px;width:auto;object-fit:contain;flex-shrink:0}
+.nav-center{display:flex;gap:20px;align-items:center}
+.nav-center a{text-decoration:none;color:#374151;font-weight:500;font-size:14px;transition:color .2s;position:relative;white-space:nowrap}
+.nav-center a:hover{color:var(--bolide-pink)}
+.nav-center a.active::after{content:'';position:absolute;bottom:-20px;left:0;right:0;height:2px;background:var(--bolide-gradient)}
+.search-bar{display:flex;align-items:center;background:var(--bolide-light);border-radius:50px;padding:6px 14px;width:160px;border:1px solid transparent;transition:all .2s}
+.search-bar:focus-within{border-color:var(--bolide-pink);background:#fff;box-shadow:0 0 0 3px rgba(233,30,140,.1)}
+.search-bar input{border:none;background:transparent;outline:none;flex:1;font-size:13px;color:#374151;min-width:0}
+.search-bar input::placeholder{color:#9ca3af}
+.search-bar i{color:var(--bolide-gray);margin-right:8px;font-size:13px;flex-shrink:0}
+.header-actions{display:flex;align-items:center;gap:10px}
+.cart-btn{position:relative;background:none;border:1px solid var(--bolide-border);border-radius:50px;padding:8px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:#374151;transition:all .2s;white-space:nowrap}
+.cart-btn:hover{border-color:var(--bolide-pink);color:var(--bolide-pink)}
+.cart-count{position:absolute;top:-5px;right:-5px;background:var(--bolide-gradient);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.signin-btn{display:flex;align-items:center;gap:6px;text-decoration:none;color:#374151;font-weight:500;font-size:13px;transition:color .2s;white-space:nowrap}
+.signin-btn:hover{color:var(--bolide-pink)}
+
+/* Hero */
+.hero{padding:36px 16px 24px;max-width:1400px;margin:0 auto;width:100%}
+.hero-label{color:var(--bolide-pink);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:28px;font-weight:900;letter-spacing:-1.2px;line-height:1.1;margin-bottom:12px;color:#111;word-break:break-word}
+.hero p{font-size:15px;color:var(--bolide-gray);max-width:600px;line-height:1.6}
+
+/* Category Tabs */
+.category-tabs{display:flex;gap:8px;padding:0 16px 20px;max-width:1400px;margin:0 auto;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.category-tabs::-webkit-scrollbar{display:none}
+.cat-tab{padding:8px 16px;border-radius:50px;border:1px solid var(--bolide-border);background:#fff;cursor:pointer;font-size:12px;font-weight:500;color:#374151;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.cat-tab:hover{border-color:var(--bolide-pink);color:var(--bolide-pink)}
+.cat-tab.active{background:var(--bolide-gradient);color:#fff;border-color:transparent;box-shadow:0 4px 15px rgba(233,30,140,.3)}
+
+/* Product Grid */
+.products-section{padding:0 16px 40px;max-width:1400px;margin:0 auto;width:100%}
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:100%}
+@media(min-width:640px){.products-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:1024px){.products-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
+@media(min-width:1280px){.products-grid{grid-template-columns:repeat(5,1fr)}}
+.product-card{background:#fff;border-radius:14px;border:1px solid var(--bolide-border);overflow:hidden;cursor:pointer;transition:all .3s;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(0,0,0,.08);border-color:transparent}
+.product-img-wrap{height:160px;background:#fafafa;display:flex;align-items:center;justify-content:center;padding:12px;position:relative;overflow:hidden}
+@media(min-width:768px){.product-img-wrap{height:200px;padding:16px}}
+.product-img-wrap img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .3s}
+.product-card:hover .product-img-wrap img{transform:scale(1.04)}
+.wishlist-icon{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid var(--bolide-border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;z-index:2}
+.wishlist-icon:hover{background:var(--bolide-pink);border-color:var(--bolide-pink);color:#fff}
+.wishlist-icon.active{background:var(--bolide-pink);border-color:var(--bolide-pink);color:#fff}
+.product-info{padding:14px;flex:1;display:flex;flex-direction:column}
+.product-brand{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--bolide-gray);margin-bottom:4px}
+.product-name{font-size:13px;font-weight:600;color:#111;line-height:1.35;margin-bottom:10px;flex:1;word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;gap:6px;flex-wrap:wrap}
+.avail-text{font-size:12px;font-weight:600;color:var(--bolide-gray);white-space:nowrap}
+.stock-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:50px;font-size:10px;font-weight:600;white-space:nowrap}
+.stock-badge.in{background:#d1fae5;color:#065f46}
+.stock-badge.low{background:#fef3c7;color:#92400e}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding:0;backdrop-filter:blur(4px);overflow-y:auto}
+.modal-overlay.active{display:flex}
+.product-modal{background:#fff;border-radius:0;width:100%;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 25px 50px rgba(0,0,0,.25);animation:modalIn .3s ease}
+@media(min-width:768px){.product-modal{border-radius:20px;max-width:900px;min-height:auto;margin:40px auto;max-height:calc(100vh - 80px)}}
+@media(min-width:1024px){.product-modal{max-width:1000px}}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--bolide-border);position:sticky;top:0;background:#fff;z-index:10}
+.modal-header h2{font-size:15px;font-weight:700}
+.modal-close{width:34px;height:34px;border-radius:50%;border:1px solid var(--bolide-border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.modal-close:hover{background:var(--bolide-light)}
+.modal-body{overflow-y:auto;padding:18px;flex:1}
+.modal-layout{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.modal-layout{grid-template-columns:1fr 1fr;gap:28px}}
+.modal-img-wrap{background:#fafafa;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:24px;min-height:260px}
+.modal-img-wrap img{max-width:100%;max-height:260px;object-fit:contain}
+.modal-details h1{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:6px;word-break:break-word}
+.modal-sku{font-size:12px;color:var(--bolide-gray);margin-bottom:12px}
+.modal-desc{font-size:14px;color:#4b5563;line-height:1.7;margin-bottom:18px}
+.modal-price-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.avail-modal{font-size:16px;font-weight:700;color:var(--bolide-gray)}
+.modal-stock{padding:5px 12px;border-radius:50px;font-size:12px;font-weight:600}
+.modal-stock.in{background:#d1fae5;color:#065f46}
+.modal-stock.out{background:#fee2e2;color:#991b1b}
+.qty-selector{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.qty-label{font-size:13px;font-weight:600;color:#374151}
+.qty-controls{display:flex;align-items:center;border:1px solid var(--bolide-border);border-radius:10px;overflow:hidden}
+.qty-controls button{width:36px;height:36px;border:none;background:#fff;cursor:pointer;font-size:16px;color:#374151;transition:background .2s}
+.qty-controls button:hover{background:var(--bolide-light)}
+.qty-controls input{width:44px;height:36px;border:none;text-align:center;font-size:14px;font-weight:600;outline:none;border-left:1px solid var(--bolide-border);border-right:1px solid var(--bolide-border)}
+.modal-actions{display:flex;gap:10px;margin-bottom:24px;flex-direction:column}
+@media(min-width:640px){.modal-actions{flex-direction:row}}
+.btn-primary{flex:1;padding:13px 20px;border-radius:12px;background:var(--bolide-gradient);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(233,30,140,.35)}
+.btn-secondary{padding:13px 20px;border-radius:12px;background:#fff;color:var(--bolide-pink);border:1.5px solid var(--bolide-pink);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-secondary:hover{background:rgba(233,30,140,.05)}
+.info-tabs{display:flex;gap:0;border-bottom:2px solid var(--bolide-border);margin-bottom:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.info-tabs::-webkit-scrollbar{display:none}
+.info-tab{padding:10px 16px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:600;color:var(--bolide-gray);position:relative;transition:color .2s;white-space:nowrap;flex-shrink:0}
+.info-tab:hover{color:var(--bolide-pink)}
+.info-tab.active{color:var(--bolide-pink)}
+.info-tab.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--bolide-gradient)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.specs-table{width:100%;border-collapse:collapse}
+.specs-table tr{border-bottom:1px solid var(--bolide-border)}
+.specs-table td{padding:11px 0;font-size:13px;word-break:break-word}
+.specs-table td:first-child{color:var(--bolide-gray);width:45%;font-weight:500;padding-right:10px}
+.specs-table td:last-child{color:#111;font-weight:600}
+.related-section{margin-top:28px;padding-top:22px;border-top:1px solid var(--bolide-border)}
+.related-section h3{font-size:17px;font-weight:800;margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.related-grid{grid-template-columns:repeat(4,1fr)}}
+.related-card{border:1px solid var(--bolide-border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .2s}
+.related-card:hover{border-color:var(--bolide-pink)}
+.related-img{height:110px;background:#fafafa;display:flex;align-items:center;justify-content:center;padding:10px}
+.related-img img{max-width:100%;max-height:100%;object-fit:contain}
+.related-info{padding:10px}
+.related-name{font-size:12px;font-weight:600;color:#111;margin-bottom:4px;line-height:1.3;word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.related-avail{font-size:11px;font-weight:600;color:var(--bolide-gray)}
+
+/* Cart Drawer */
+.cart-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:3000;display:none}
+.cart-drawer-overlay.active{display:block}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:100%;max-width:420px;background:#fff;z-index:3001;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.15)}
+.cart-drawer.active{transform:translateX(0)}
+.cart-drawer-header{padding:18px 20px;border-bottom:1px solid var(--bolide-border);display:flex;align-items:center;justify-content:space-between}
+.cart-drawer-header h2{font-size:18px;font-weight:800}
+.cart-items{flex:1;overflow-y:auto;padding:16px 20px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--bolide-border)}
+.cart-item-img{width:60px;height:60px;background:#fafafa;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:6px;flex-shrink:0}
+.cart-item-img img{max-width:100%;max-height:100%;object-fit:contain}
+.cart-item-details{flex:1;min-width:0}
+.cart-item-name{font-size:13px;font-weight:600;color:#111;margin-bottom:3px;line-height:1.3;word-break:break-word}
+.cart-item-brand{font-size:11px;color:var(--bolide-gray);margin-bottom:6px}
+.cart-item-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cart-item-qty{display:flex;align-items:center;border:1px solid var(--bolide-border);border-radius:8px;overflow:hidden}
+.cart-item-qty button{width:26px;height:26px;border:none;background:#fff;cursor:pointer;font-size:13px}
+.cart-item-qty span{width:28px;text-align:center;font-size:12px;font-weight:600;border-left:1px solid var(--bolide-border);border-right:1px solid var(--bolide-border)}
+.cart-item-remove{color:#ef4444;cursor:pointer;font-size:12px;margin-left:6px;transition:color .2s}
+.cart-item-remove:hover{color:#b91c1c}
+.cart-empty{text-align:center;padding:50px 16px;color:var(--bolide-gray)}
+.cart-empty i{font-size:36px;margin-bottom:12px;color:var(--bolide-border)}
+.cart-footer{padding:18px 20px;border-top:1px solid var(--bolide-border);background:#fafafa}
+.cart-summary-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:var(--bolide-gray)}
+.cart-summary-row.total{font-size:16px;font-weight:800;color:#111;margin:12px 0 16px;padding-top:12px;border-top:1px solid var(--bolide-border)}
+.checkout-btn{width:100%;padding:14px;border-radius:12px;background:var(--bolide-gradient);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;transition:all .2s}
+.checkout-btn:hover{box-shadow:0 8px 25px rgba(233,30,140,.35)}
+.continue-btn{width:100%;padding:10px;border:none;background:none;color:var(--bolide-gray);font-size:13px;cursor:pointer;text-align:center}
+.continue-btn:hover{color:var(--bolide-pink)}
+
+/* Login Modal */
+.login-modal{position:fixed;inset:0;z-index:4000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);padding:16px}
+.login-modal.active{display:flex}
+.login-box{background:#fff;border-radius:20px;padding:28px 22px;width:100%;max-width:380px;box-shadow:0 25px 50px rgba(0,0,0,.25);animation:modalIn .3s ease;position:relative}
+.login-box h2{font-size:20px;font-weight:800;margin-bottom:6px}
+.login-box p{color:var(--bolide-gray);font-size:13px;margin-bottom:20px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px}
+.form-group input{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--bolide-border);font-size:14px;outline:none;transition:all .2s}
+.form-group input:focus{border-color:var(--bolide-pink);box-shadow:0 0 0 3px rgba(233,30,140,.1)}
+.login-btn{width:100%;padding:13px;border-radius:12px;background:var(--bolide-gradient);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;transition:all .2s}
+.login-btn:hover{box-shadow:0 8px 25px rgba(233,30,140,.35)}
+
+/* Toast */
+.toast{position:fixed;bottom:16px;left:16px;right:16px;z-index:5000;background:#111;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:500;transform:translateY(100px);opacity:0;transition:all .3s ease;display:flex;align-items:center;gap:10px;max-width:400px;margin:0 auto}
+.toast.show{transform:translateY(0);opacity:1}
+.toast i{color:var(--bolide-pink)}
+
+/* Wishlist */
+.wishlist-section{padding:24px 16px;max-width:1400px;margin:0 auto;display:none;width:100%}
+.wishlist-section.active{display:block}
+.section-title{font-size:24px;font-weight:800;margin-bottom:24px}
+.no-results{text-align:center;padding:50px 16px;color:var(--bolide-gray)}
+.no-results i{font-size:36px;margin-bottom:12px;color:var(--bolide-border)}
+.no-results h3{font-size:17px;font-weight:700;color:#111;margin-bottom:6px}
+.user-badge{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bolide-light);border-radius:50px;font-size:12px;font-weight:600;white-space:nowrap}
+.user-badge i{color:var(--bolide-pink)}
+.logout-link{color:var(--bolide-gray);cursor:pointer;margin-left:4px;font-size:11px}
+.logout-link:hover{color:#ef4444}
+
+/* Desktop overrides */
+@media(min-width:768px){
+.header{padding:0 32px;height:68px}
+.logo-img{height:36px}
+.nav-center a{font-size:15px}
+.nav-center a.active::after{bottom:-24px}
+.search-bar{padding:8px 18px;width:260px}
+.search-bar input{font-size:14px}
+.cart-btn{padding:10px 18px;font-size:14px}
+.signin-btn{font-size:14px}
+.hero{padding:50px 32px 30px}
+.hero h1{font-size:42px}
+.hero p{font-size:17px}
+.category-tabs{padding:0 32px 24px;gap:10px}
+.cat-tab{padding:9px 20px;font-size:13px}
+.products-section{padding:0 32px 50px}
+.product-info{padding:16px}
+.product-name{font-size:14px}
+.modal-header{padding:16px 24px}
+.modal-header h2{font-size:16px}
+.modal-body{padding:24px}
+.modal-details h1{font-size:24px}
+.modal-desc{font-size:15px}
+.related-img{height:120px}
+.toast{bottom:24px;right:24px;left:auto;margin:0}
+.wishlist-section{padding:36px 32px}
+.section-title{font-size:28px}
+}
+@media(min-width:1024px){
+.hero h1{font-size:52px}
+.product-img-wrap{height:220px}
+.modal-img-wrap{min-height:340px;padding:32px}
+.modal-img-wrap img{max-height:340px}
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<header class="header">
+<div style="display:flex;align-items:center;gap:16px;flex-shrink:0;">
+<img src="assets/bolidelogo.jpg" alt="Bolide" class="logo-img">
+<nav class="nav-center">
+<a href="#" onclick="showSection('shop')" id="nav-shop" class="active">Shop</a>
+</nav>
+</div>
+<div style="display:flex;align-items:center;gap:10px;flex:1;justify-content:flex-end;min-width:0;">
+<div class="search-bar">
+<i class="fas fa-search"></i>
+<input type="text" id="searchInput" placeholder="Search catalog..." oninput="handleSearch(this.value)">
+</div>
+<div class="header-actions">
+<button class="cart-btn" onclick="toggleCart()">
+<i class="fas fa-shopping-cart"></i>
+<span>Cart</span>
+<span class="cart-count" id="cartCount" style="display:none;">0</span>
+</button>
+<div id="authSection">
+<a href="#" class="signin-btn" onclick="openLogin()">
+<i class="fas fa-sign-in-alt"></i>
+<span>Sign in</span>
+</a>
+</div>
+</div>
+</div>
+</header>
+
+<div id="shopSection">
+<section class="hero">
+<div class="hero-label">Online Store</div>
+<h1>Shop Bolide Tanzania.</h1>
+<p>Genuine, in-stock energy, fibre and RF hardware — dispatched from our Dar es Salaam warehouses.</p>
+</section>
+<div class="category-tabs" id="categoryTabs">
+<button class="cat-tab active" onclick="filterCategory('all')">All</button>
+<button class="cat-tab" onclick="filterCategory('rf')">RF Products</button>
+<button class="cat-tab" onclick="filterCategory('power')">Power Solutions</button>
+<button class="cat-tab" onclick="filterCategory('fibre-network')">Fibre Network</button>
+<button class="cat-tab" onclick="filterCategory('equipment')">Equipment & Transmission</button>
+<button class="cat-tab" onclick="filterCategory('fibre-connectivity')">Fibre Connectivity</button>
+</div>
+<section class="products-section">
+<div class="products-grid" id="productsGrid"></div>
+<div class="no-results" id="noResults" style="display:none;">
+<i class="fas fa-search"></i>
+<h3>No products found</h3>
+<p>Try adjusting your search or filter criteria.</p>
+</div>
+</section>
+</div>
+
+<div class="wishlist-section" id="wishlistSection">
+<h1 class="section-title">Your Wishlist</h1>
+<div class="products-grid" id="wishlistGrid"></div>
+<div class="no-results" id="emptyWishlist" style="display:none;">
+<i class="fas fa-heart"></i>
+<h3>Your wishlist is empty</h3>
+<p>Browse products and click the heart icon to save items.</p>
+</div>
+</div>
+
+<div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+<div class="product-modal" onclick="event.stopPropagation()">
+<div class="modal-header">
+<h2>Product Details</h2>
+<button class="modal-close" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+</div>
+<div class="modal-body">
+<div class="modal-layout" id="modalLayout"></div>
+</div>
+</div>
+</div>
+
+<div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+<div class="cart-drawer-header">
+<h2>Your cart</h2>
+<button class="modal-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+</div>
+<div class="cart-items" id="cartItems"></div>
+<div class="cart-footer" id="cartFooter" style="display:none;">
+<div class="cart-summary-row"><span>Items in cart</span><span id="cartItemCount">0</span></div>
+<div class="cart-summary-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+<div style="margin:14px 0;padding-top:14px;border-top:1px solid var(--bolide-border);font-size:13px;color:var(--bolide-gray);text-align:center;">Pricing available on request</div>
+<button class="checkout-btn" onclick="confirmOrder()"><i class="fas fa-file-invoice"></i> Confirm order (request quotation)</button>
+<button class="continue-btn" onclick="toggleCart()">Continue shopping</button>
+</div>
+</div>
+
+<div class="login-modal" id="loginModal">
+<div class="login-box">
+<h2>Company Sign In</h2>
+<p>Sign in to view your saved cart and wishlist.</p>
+<div class="form-group"><label>Company Email</label><input type="email" id="loginEmail" placeholder="company@example.com"></div>
+<div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+<button class="login-btn" onclick="doLogin()">Sign In</button>
+<p style="text-align:center;margin-top:14px;font-size:12px;color:var(--bolide-gray);">
+Demo: <strong>company1@bolide.com</strong> / <strong>password123</strong><br>
+or <strong>company2@bolide.com</strong> / <strong>password123</strong>
+</p>
+<button class="modal-close" style="position:absolute;top:14px;right:14px;" onclick="closeLogin()"><i class="fas fa-times"></i></button>
+</div>
+</div>
+
+<div class="toast" id="toast">
+<i class="fas fa-check-circle"></i>
+<span id="toastMsg">Added to cart</span>
+</div>
+
+<script>
+// ===================== REAL DARTCOM PRODUCT DATA =====================
+const products = [
+// RF Products (from dartcom.co.tz/rf-products/)
+{id:1,category:'rf',brand:'Huber+Suhner',name:'RF Corrugated Coaxial Cable 1/2" Flex',price:0,stock:850,image:'assets/rf_cable_assembly.png',sku:'RF-CORR-12F',warranty:'2 Year',desc:'High-quality corrugated coaxial cable for RF transmission applications. Low attenuation with excellent shielding effectiveness. Suitable for cellular base stations, broadcast, and microwave links. Supplied in 500m wooden drums.',specs:{'Cable Type':'1/2" Corrugated Coaxial','Impedance':'50 Ohm','Outer Conductor':'Corrugated Copper','Dielectric':'Foam PE','Jacket':'PE Black UV-resistant','Min Bend Radius':'50mm','Max Frequency':'6 GHz','Attenuation @2GHz':'0.08 dB/m','Tensile Strength':'1200N','Operating Temp':'-40°C to +85°C'},sizes:['Per Meter','100m Reel','500m Drum']},
+{id:2,category:'rf',brand:'Huber+Suhner',name:'RF Quick-Fit Connector N-Type IP68',price:0,stock:320,image:'assets/rf_omni_kit.png',sku:'RF-QF-N68',warranty:'1 Year',desc:'Smart quick-fit N-Type connector with IP68 weatherproof rating. Tool-less installation with push-lock mechanism. Compatible with 1/2" and 7/8" corrugated cables. Gold-plated contacts for low intermodulation.',specs:{'Connector Type':'N-Type Male','Interface':'Quick-Fit Push-Lock','Weatherproof':'IP68','Cable Compat':'1/2" & 7/8" Corrugated','Contact':'Gold-plated Brass','Body':'Passivated Brass','VSWR':'≤1.15 @ 3GHz','PIM':'≤-160 dBc','Operating Temp':'-40°C to +85°C','Torque':'2.5 Nm'},sizes:['For 1/2" Cable','For 7/8" Cable','For 1-5/8" Cable']},
+{id:3,category:'rf',brand:'Tongyu',name:'800-900MHz 6.5dBi Outdoor Omni Antenna',price:0,stock:45,image:'assets/rf_omni_antenna.png',sku:'RF-OMNI-900-65',warranty:'3 Year',desc:'Outdoor omnidirectional base station antenna for GSM/UMTS/LTE bands. Fiberglass radome with UV-resistant coating. N-Female connector at base. Includes mounting bracket for pole or wall installation.',specs:{'Frequency Range':'806-960 MHz','Gain':'6.5 dBi','VSWR':'≤1.5','Polarization':'Vertical','Connector':'N-Female','Radome':'Fiberglass UV-resistant','Max Power':'200W','Wind Survival':'200 km/h','Dimensions':'Ø25 x 1800mm','Weight':'1.2kg'},sizes:['Standard Mount','With Tilt Bracket','Lightning Arrester Kit']},
+{id:4,category:'rf',brand:'Huaptec',name:'RF EMP Protector GDT Hybrid 7/16 DIN',price:0,stock:78,image:'assets/rf_panel_antenna.png',sku:'RF-EMP-GDT-716',warranty:'2 Year',desc:'High-power gas discharge tube hybrid EMP protector for coaxial RF lines. Protects equipment from lightning-induced surges and electromagnetic pulses. 7/16 DIN connectors with DC pass capability.',specs:{'Technology':'GDT Hybrid','Connector':'7/16 DIN Male/Female','Max Power':'2kW','Discharge Current':'20kA (8/20μs)','Insertion Loss':'≤0.1 dB','VSWR':'≤1.2','Response Time':'<100ns','DC Pass':'Yes','Operating Temp':'-40°C to +85°C','Mounting':'Bulkhead or Inline'}},
+
+// Power Solutions (from dartcom.co.za/power-solutions-products/)
+{id:5,category:'power',brand:'Narada',name:'12V 200Ah Front Terminal VRLA Battery',price:0,stock:24,image:'assets/narada_battery_12v.png',sku:'PWR-NAR-12V200',warranty:'5 Year',desc:'Narada 12V 200Ah front terminal pure lead VRLA battery designed for telecom and UPS applications. 12+ year design life with excellent deep discharge recovery. Front terminal design enables easy rack installation and maintenance.',specs:{'Voltage':'12V','Capacity':'200Ah @ 10HR','Type':'Pure Lead VRLA','Terminals':'M6 Front Insert','Design Life':'12+ Years','Dimensions':'558 x 125 x 311mm','Weight':'62kg','Operating Temp':'-20°C to +60°C','Self Discharge':'<3% per month @ 25°C','Certification':'IEC 60896-21/22'},sizes:['Single Unit','4-Pack Rack','With Battery Rack']},
+{id:6,category:'power',brand:'Narada',name:'48V 100Ah LiFePO4 Lithium Battery',price:0,stock:8,image:'assets/power_lithium_battery.png',sku:'PWR-NAR-48V100-LFP',warranty:'10 Year',desc:'Narada 48V 100Ah lithium iron phosphate battery module for telecom, UPS and renewable energy. Built-in BMS with cell balancing, temperature monitoring and CAN/RS485 communication. Rack-mount 3U design.',specs:{'Voltage':'48V (51.2V nominal)','Capacity':'100Ah (5.12kWh)','Chemistry':'LiFePO4','Cycle Life':'>4000 cycles @ 80% DOD','Communication':'CAN + RS485','BMS':'Integrated with balancing','Form Factor':'19" Rackmount 3U','Dimensions':'442 x 410 x 133mm','Weight':'48kg','Certification':'UN38.3, CE, IEC62619'},sizes:['Single Module','2-Module Kit','4-Module Cabinet']},
+{id:7,category:'power',brand:'Delta',name:'E-Series 48V 3000W Rectifier Module',price:0,stock:15,image:'assets/delta_rectifier.png',sku:'PWR-DEL-E48-3K',warranty:'2 Year',desc:'Delta E-Series 48V 3000W high-efficiency rectifier module for telecom power systems. 96% efficiency with wide input voltage range. Hot-swappable design for 19" rackmount power shelves. Digital control with SNMP monitoring.',specs:{'Output':'48VDC 3000W','Input':'200-240VAC','Efficiency':'96%','Power Factor':'>0.99','THD':'<5%','Form Factor':'19" Rack Module','Dimensions':'105 x 41 x 281mm','Weight':'2.1kg','Cooling':'Front-to-rear airflow','Protection':'OVP, OCP, OTP, SCP'},sizes:['Single Module','With Shelf 3-Slot','With Controller']},
+{id:8,category:'power',brand:'LONGi',name:'Hi-MO X6 Scientist 590W Solar Panel',price:0,stock:120,image:'assets/longi_solar_panel.png',sku:'PWR-LNG-HIMO-590',warranty:'25 Year',desc:'LONGi Hi-MO X6 Scientist 590W monocrystalline solar panel with HPBC cell technology. High efficiency with excellent low-light performance. Anodized aluminum frame and IP68 junction box. Linear power warranty for 25 years.',specs:{'Power':'590W','Cell Type':'Monocrystalline HPBC','Efficiency':'22.8%','Voc':'51.8V','Isc':'14.42A','Dimensions':'2172 x 1303 x 35mm','Weight':'27.5kg','Frame':'Anodized Aluminum','Junction Box':'IP68','Warranty':'25 Years Linear'},sizes:['Single Panel','Pallet (36 units)','With Mounting Kit']},
+
+// Fibre Network Solutions
+{id:9,category:'fibre-network',brand:'Emtelle',name:'GYTS 48F Armored Outdoor Fibre Cable',price:0,stock:5000,image:'assets/gyts_cable.png',sku:'FIB-GYTS-48F',warranty:'25 Year',desc:'GYTS stranded loose tube steel tape armored outdoor fibre optic cable. 48 fibres of single-mode G.652D. Corrugated steel tape armoring with PE jacket for duct and direct burial. Supplied on 2000m wooden drums.',specs:{'Fibre Count':'48 cores','Fibre Type':'G.652D Single Mode','Cable Type':'GYTS Stranded Loose Tube','Armoring':'Corrugated Steel Tape','Jacket':'PE Black','Tensile Strength':'600N long-term','Crush Resistance':'1000N/100mm','Operating Temp':'-40°C to +70°C','Drum Length':'2000m','Standard':'ITU-T G.652D, IEC 60794'},sizes:['Per Meter','500m Reel','2000m Drum']},
+{id:10,category:'fibre-network',brand:'Duraline',name:'240F Dome Fibre Splice Closure',price:0,stock:35,image:'assets/fibre_splice_closure.png',sku:'FIB-SC-DOME-240',warranty:'5 Year',desc:'IP68-rated dome splice closure for outdoor aerial, duct and direct-buried fibre networks. Accommodates 240 fibres with 1 inlet and 4 outlet cable ports. Mechanical seal with 6 pre-installed 24-fibre splice trays.',specs:{'Capacity':'240 fibres','Ports':'1 In + 4 Out (expandable)','Protection':'IP68','Sealing':'Mechanical clamp','Splice Trays':'6 x 24-fibre included','Material':'PP + ABS UV-resistant','Dimensions':'220 x 460mm (D x H)','Cable Dia':'8-20mm in / 8-16mm out','Operating Temp':'-40°C to +65°C','Mounting':'Pole / Wall / Aerial'},sizes:['Standard','With Ground Wire','Heat Shrink Kit']},
+{id:11,category:'fibre-network',brand:'Emtelle',name:'HDPE Fibre Optic Handhole Chamber',price:0,stock:18,image:'assets/fibre_manhole.png',sku:'FIB-HH-HDPE-600',warranty:'10 Year',desc:'High-density polyethylene fibre optic handhole chamber for FTTH network access points. 600x600x600mm with lockable polymer concrete cover. Multiple cable entry ports with grommet seals. Load rated for pedestrian and light vehicle.',specs:{'Material':'HDPE','Cover':'Polymer Concrete','Dimensions':'600 x 600 x 600mm','Load Rating':'15kN (pedestrian)','Cable Entries':'8 x 110mm ports','Grommets':'Silicone rubber seals','Cover Lock':'Stainless steel','Weight':'28kg','Operating Temp':'-30°C to +70°C','Standard':'SANS 50122'},sizes:['600x600x600mm','900x600x750mm','With Duct Kit']},
+{id:12,category:'fibre-network',brand:'OFS',name:'ADSS Aerial Fibre Cable 96F Single Jacket',price:0,stock:42,image:'assets/gyts_cable_reel.png',sku:'FIB-ADSS-96F',warranty:'25 Year',desc:'All-dielectric self-supporting aerial fibre cable with 96 single-mode fibres. Aramid yarn strength members with single PE jacket. Designed for short to medium span aerial deployment up to 100m. No metallic elements.',specs:{'Fibre Count':'96 cores','Fibre Type':'G.652D Single Mode','Cable Type':'ADSS Single Jacket','Strength Members':'Aramid yarn','Span':'Up to 100m','Jacket':'PE Black UV-resistant','Tensile Strength':'1500N','Operating Temp':'-40°C to +70°C','Drum Length':'2000m','Standard':'IEEE 1222, IEC 60794'},sizes:['Per Meter','500m Reel','2000m Drum']},
+
+// Equipment & Transmission Solutions
+{id:13,category:'equipment',brand:'VSOL',name:'2-Slot GPON/XGS-PON Combo OLT Chassis',price:0,stock:6,image:'assets/gpon_olt.png',sku:'EQ-GPON-2SOLT',warranty:'3 Year',desc:'2-slot chassis GPON/XGS-PON combo OLT for FTTH networks. Supports 16 PON ports with 20km reach. Dual power supply slots with hot-swappable design. Layer 2/3 switching with VLAN, QoS and multicast support.',specs:{'PON Ports':'Up to 16 GPON/XGS-PON','Split Ratio':'1:128','Backhaul':'4 x 10Gb SFP+','Switching':'Layer 2/3','Management':'CLI, Web, SNMP','Redundancy':'Dual PSU hot-swap','Form Factor':'19" 2U Rackmount','Dimensions':'440 x 360 x 88mm','Power':'AC 100-240V','Weight':'8.5kg'},sizes:['Chassis Only','With 8 PON Cards','With 16 PON Cards']},
+{id:14,category:'equipment',brand:'Dasan',name:'8-Port GPON OLT with 4x10G Uplink',price:0,stock:9,image:'assets/gpon_olt_dasan.png',sku:'EQ-GPON-8POLT',warranty:'2 Year',desc:'Compact 8-port GPON OLT with 4 x 10Gb SFP+ uplink ports. Supports 1024 ONUs with 1:128 split ratio. Built-in routing, firewall and VLAN management. 1U rackmount form factor with dual redundant power.',specs:{'PON Ports':'8 x GPON','Uplink':'4 x 10Gb SFP+','Max ONUs':'1024','Split Ratio':'1:128','Routing':'Static + Dynamic OSPF','VLANs':'4094','Form Factor':'1U Rackmount','Dimensions':'440 x 280 x 44mm','Power':'Dual AC 100-240V','Weight':'4.2kg'},sizes:['Standard','With SFP Modules','With Management Software']},
+{id:15,category:'equipment',brand:'Sanny Telecom',name:'11GHz 0.6m Microwave Dish Antenna',price:0,stock:12,image:'assets/microwave_dish_mount.png',sku:'EQ-MW-11G-06M',warranty:'3 Year',desc:'Ultra high-performance 11GHz microwave dish antenna for backhaul links. 0.6m diameter with 34.5dBi gain. Precision aluminum reflector with UV-resistant radome. Adjustable azimuth/elevation mounting bracket included.',specs:{'Frequency':'10.125 - 11.7 GHz','Diameter':'0.6m (2ft)','Gain':'34.5 dBi','VSWR':'≤1.3','F/B Ratio':'>65 dB','Polarization':'Dual H+V','Radome':'UV-resistant included','Mount':'Adjustable AZ/EL','Wind Survival':'200 km/h','Weight':'8.5kg'},sizes:['0.6m Dish','1.2m Dish','With Mounting Kit']},
+{id:16,category:'equipment',brand:'Aviat',name:'WTM 4800 Multi-Band Microwave Radio',price:0,stock:4,image:'assets/microwave_dish.png',sku:'EQ-MW-WTM4800',warranty:'5 Year',desc:'WTM 4800 multi-band microwave transmission radio supporting 6-42GHz frequencies. 2Gbps+ capacity with ACM and XPIC. Zero-touch provisioning with centralized management. All-outdoor IP67 design with integrated antenna option.',specs:{'Frequency':'6 - 42 GHz (multi-band)','Capacity':'2Gbps+ aggregate','Modulation':'4096QAM ACM','Protection':'1+1 HSB, XPIC','Interface':'10GbE + GbE','Management':'NETCONF/YANG','Design':'All-outdoor IP67','Power':'PoE or DC -48V','MTBF':'>250,000 hours','Weight':'4.8kg (radio only)'},sizes:['Radio Only','With 0.6m Antenna','With 1.2m Antenna']},
+
+// Fibre Connectivity & Management Solutions
+{id:17,category:'fibre-connectivity',brand:'Huber+Suhner',name:'1U 24F Sliding Fibre Patch Panel SC/APC',price:0,stock:28,image:'assets/fibre_patch_panel.png',sku:'FC-PP-1U24-SCA',warranty:'2 Year',desc:'19" 1U rack-mount sliding fibre patch panel with 24 SC/APC adapters. Integrated 12-fibre splice tray with smooth sliding rails for rear access. Cold-rolled steel construction with black powder-coat finish.',specs:{'Form Factor':'1U 19" Rackmount','Capacity':'24 fibres SC duplex','Adapters':'SC/APC pre-installed','Splice Tray':'12-fibre integrated','Material':'Cold-rolled steel 1.2mm','Finish':'Black powder coat','Dimensions':'482 x 285 x 44mm','Cable Entry':'Rear grommet','Mounting':'Ears with cage nuts','Weight':'2.8kg'},sizes:['SC/APC','SC/UPC','LC/APC','LC/UPC']},
+{id:18,category:'fibre-connectivity',brand:'Huber+Suhner',name:'2U 48F Sliding Fibre Patch Panel LC/UPC',price:0,stock:22,image:'assets/fibre_patch_2ru.png',sku:'FC-PP-2U48-LCU',warranty:'2 Year',desc:'High-density 2U sliding patch panel with 48 LC/UPC fibre ports. Dual 24-fibre splice trays with cable management bar and laser-etched port numbers. Compatible with SC, LC and ST adapter configurations.',specs:{'Form Factor':'2U 19" Rackmount','Capacity':'48 fibres','Adapters':'LC/UPC configurable','Splice Trays':'2 x 24-fibre','Cable Mgmt':'Integrated bar + rings','Material':'Steel 1.5mm','Dimensions':'482 x 380 x 88mm','Port Labeling':'Laser-etched','Mounting':'Adjustable depth ears','Weight':'5.2kg'},sizes:['LC Duplex','SC Duplex','MTP/MPO']},
+{id:19,category:'fibre-connectivity',brand:'OFS',name:'SC to LC Hybrid Fibre Adapter Simplex',price:0,stock:350,image:'assets/fibre_adapter.png',sku:'FC-ADP-SC-LC',warranty:'1 Year',desc:'SC to LC hybrid fibre optic adapter for connecting different connector types. Ceramic zirconia sleeve for low insertion loss. Blue housing for single-mode OS2 applications. LGX snap-in compatible.',specs:{'Type':'SC Female to LC Female','Sleeve':'Zirconia ceramic','Housing':'Metal with blue finish','Insertion Loss':'≤0.2dB','Return Loss':'≥50dB (UPC)','Durability':'1000 matings','Dimensions':'L28 x W12 x H10mm','Mounting':'LGX snap-in','Application':'OS2 Single Mode','Packaging':'10 pcs per pack'}},
+{id:20,category:'fibre-connectivity',brand:'Emtelle',name:'FTTH Drop Cable 1F G.657A2 LSZH',price:0,stock:8000,image:'assets/fibre_cable.png',sku:'FC-DROP-1F-G657',warranty:'10 Year',desc:'Single-fibre FTTH drop cable with G.657A2 bend-insensitive fibre. Flat 2.0x3.0mm profile with FRP strength members and LSZH jacket. Self-supporting figure-8 option available for aerial deployment.',specs:{'Fibre Count':'1 core','Fibre Type':'G.657A2 Bend-insensitive','Cable Type':'Flat Drop 2.0x3.0mm','Strength Members':'2 x FRP','Jacket':'LSZH White','Min Bend Radius':'10mm','Tensile Strength':'80N long-term','Operating Temp':'-20°C to +60°C','Drum Length':'2000m','Standard':'ITU-T G.657A2, IEC 60794'},sizes:['Per Meter','500m Reel','2000m Drum']}
+];
+
+const categoryNames = {all:'All Products',rf:'RF Products',power:'Power Solutions','fibre-network':'Fibre Network Solutions',equipment:'Equipment & Transmission Solutions','fibre-connectivity':'Fibre Connectivity & Management Solutions'};
+let currentCategory = 'all', currentSearch = '', cart = {}, wishlist = new Set(), currentUser = null, modalQty = 1, currentProduct = null;
+
+function getStorageKey(type){ return currentUser ? 'bolide_'+type+'_'+currentUser.email : 'bolide_'+type+'_guest'; }
+function loadCart(){ try{ const d = localStorage.getItem(getStorageKey('cart')); if(d) cart = JSON.parse(d); }catch(e){ cart = {}; } updateCartUI(); }
+function saveCart(){ localStorage.setItem(getStorageKey('cart'), JSON.stringify(cart)); }
+function loadWishlist(){ try{ const d = localStorage.getItem(getStorageKey('wishlist')); if(d) wishlist = new Set(JSON.parse(d)); }catch(e){ wishlist = new Set(); } }
+function saveWishlist(){ localStorage.setItem(getStorageKey('wishlist'), JSON.stringify([...wishlist])); }
+function loadUser(){ try{ const d = localStorage.getItem('bolide_currentUser'); if(d){ currentUser = JSON.parse(d); updateAuthUI(); loadCart(); loadWishlist(); } }catch(e){} }
+function saveUser(){ if(currentUser) localStorage.setItem('bolide_currentUser', JSON.stringify(currentUser)); else localStorage.removeItem('bolide_currentUser'); }
+
+function renderProducts(){
+    const grid = document.getElementById('productsGrid');
+    const noResults = document.getElementById('noResults');
+    let filtered = products;
+    if(currentCategory !== 'all') filtered = filtered.filter(p => p.category === currentCategory);
+    if(currentSearch.trim()){ const q = currentSearch.toLowerCase(); filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q)); }
+    if(filtered.length === 0){ grid.innerHTML = ''; noResults.style.display = 'block'; return; }
+    noResults.style.display = 'none';
+    grid.innerHTML = filtered.map(p => `
+        <div class="product-card" onclick="openProduct(${p.id})">
+            <div class="product-img-wrap">
+                <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+                <div class="wishlist-icon ${wishlist.has(p.id)?'active':''}" onclick="event.stopPropagation();toggleWishlist(${p.id})" title="Add to wishlist">
+                    <i class="fas fa-heart" style="font-size:12px;"></i>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-brand">${p.brand} · ${categoryNames[p.category]}</div>
+                <div class="product-name">${p.name}</div>
+                <div class="product-footer">
+                    <div class="avail-text">Available on request</div>
+                    <div class="stock-badge ${p.stock > 10 ? 'in' : 'low'}">
+                        <i class="fas fa-check-circle" style="font-size:9px;"></i>
+                        ${p.stock > 10 ? 'In Stock' : 'Low Stock'}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderWishlist(){
+    const grid = document.getElementById('wishlistGrid');
+    const empty = document.getElementById('emptyWishlist');
+    const items = products.filter(p => wishlist.has(p.id));
+    if(items.length === 0){ grid.innerHTML = ''; empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+    grid.innerHTML = items.map(p => `
+        <div class="product-card" onclick="openProduct(${p.id})">
+            <div class="product-img-wrap">
+                <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
+                <div class="wishlist-icon active" onclick="event.stopPropagation();toggleWishlist(${p.id})" title="Remove from wishlist">
+                    <i class="fas fa-heart" style="font-size:12px;"></i>
+                </div>
+            </div>
+            <div class="product-info">
+                <div class="product-brand">${p.brand} · ${categoryNames[p.category]}</div>
+                <div class="product-name">${p.name}</div>
+                <div class="product-footer">
+                    <div class="avail-text">Available on request</div>
+                    <div class="stock-badge ${p.stock > 10 ? 'in' : 'low'}">
+                        <i class="fas fa-check-circle" style="font-size:9px;"></i>
+                        ${p.stock > 10 ? 'In Stock' : 'Low Stock'}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function getRelatedProducts(pid, cat){ return products.filter(p => p.category === cat && p.id !== pid).slice(0, 4); }
+
+function openProduct(id){
+    const p = products.find(x => x.id === id);
+    if(!p) return;
+    currentProduct = p; modalQty = 1;
+    const related = getRelatedProducts(p.id, p.category);
+    const specsHtml = Object.entries(p.specs).map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+    const sizesHtml = p.sizes.map((s,i) => `<option value="${s}" ${i===0?'selected':''}>${s}</option>`).join('');
+    const relatedHtml = related.map(r => `
+        <div class="related-card" onclick="openProduct(${r.id})">
+            <div class="related-img"><img src="${r.image}" alt="${r.name}" onerror="this.style.display='none'"></div>
+            <div class="related-info">
+                <div class="related-name">${r.name}</div>
+                <div class="related-avail">Available on request</div>
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('modalLayout').innerHTML = `
+        <div class="modal-img-wrap"><img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'"></div>
+        <div class="modal-details">
+            <h1>${p.name}</h1>
+            <div class="modal-sku">SKU: ${p.sku} &nbsp;|&nbsp; Warranty: ${p.warranty} &nbsp;|&nbsp; Brand: ${p.brand}</div>
+            <div class="modal-desc">${p.desc}</div>
+            <div class="modal-price-row">
+                <div class="avail-modal">Price: Available on request</div>
+                <div class="modal-stock ${p.stock > 0 ? 'in' : 'out'}">${p.stock > 0 ? '<i class="fas fa-check-circle"></i> In Stock' : 'Out of Stock'}: ${p.stock} units</div>
+            </div>
+            <div class="qty-selector">
+                <span class="qty-label">QTY</span>
+                <div class="qty-controls">
+                    <button onclick="changeModalQty(-1)">−</button>
+                    <input type="text" id="modalQtyInput" value="1" readonly>
+                    <button onclick="changeModalQty(1)">+</button>
+                </div>
+            </div>
+            <div style="margin-bottom:16px;">
+                <label style="font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:6px;">Size / Configuration</label>
+                <select id="modalSize" style="padding:10px 14px;border-radius:10px;border:1.5px solid var(--bolide-border);font-size:14px;min-width:200px;outline:none;">${sizesHtml}</select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="addToCartFromModal()"><i class="fas fa-cart-plus"></i> Add to order</button>
+                <button class="btn-secondary" onclick="toggleWishlist(${p.id});updateWishlistBtn()">
+                    <i class="fas fa-heart"></i> ${wishlist.has(p.id) ? 'In Wishlist' : 'Add to wishlist'}
+                </button>
+            </div>
+            <div class="info-tabs">
+                <button class="info-tab active" onclick="switchTab('specs',this)">Specifications</button>
+                <button class="info-tab" onclick="switchTab('desc',this)">Description</button>
+                <button class="info-tab" onclick="switchTab('warranty',this)">Warranty</button>
+            </div>
+            <div class="tab-content active" id="tab-specs"><table class="specs-table">${specsHtml}</table></div>
+            <div class="tab-content" id="tab-desc"><p style="font-size:14px;color:#4b5563;line-height:1.8;">${p.desc} This product is sourced directly from authorized distributors and comes with full manufacturer warranty. All items are tested and certified before dispatch from our Dar es Salaam warehouse.</p></div>
+            <div class="tab-content" id="tab-warranty"><p style="font-size:14px;color:#4b5563;line-height:1.8;">This product carries a <strong>${p.warranty}</strong> manufacturer warranty covering defects in materials and workmanship. Extended warranty options available upon request. Returns accepted within 14 days for unopened items.</p></div>
+            <div class="related-section">
+                <h3>Related Products</h3>
+                <div class="related-grid">${relatedHtml}</div>
+            </div>
+        </div>
+    `;
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal(){ document.getElementById('productModal').classList.remove('active'); document.body.style.overflow = ''; currentProduct = null; }
+function closeModal(e){ if(e.target === e.currentTarget) closeProductModal(); }
+function changeModalQty(d){ modalQty = Math.max(1, Math.min(99, modalQty + d)); const el = document.getElementById('modalQtyInput'); if(el) el.value = modalQty; }
+function switchTab(tab, btn){
+    document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    const t = document.getElementById('tab-'+tab); if(t) t.classList.add('active');
+}
+function updateWishlistBtn(){ if(!currentProduct) return; const btn = document.querySelector('.modal-actions .btn-secondary'); if(btn) btn.innerHTML = `<i class="fas fa-heart"></i> ${wishlist.has(currentProduct.id) ? 'In Wishlist' : 'Add to wishlist'}`; }
+
+function addToCartFromModal(){ if(!currentProduct) return; const sizeEl = document.getElementById('modalSize'); const size = sizeEl ? sizeEl.value : currentProduct.sizes[0]; addToCart(currentProduct.id, modalQty, size); }
+function addToCart(productId, qty, size){
+    const p = products.find(x => x.id === productId);
+    if(!p) return;
+    const key = productId + '_' + size;
+    if(cart[key]) cart[key].qty += qty;
+    else cart[key] = {id:productId, name:p.name, brand:p.brand, image:p.image, qty:qty, size:size};
+    saveCart(); updateCartUI(); showToast(p.name + ' added to cart');
+}
+function removeFromCart(key){ delete cart[key]; saveCart(); updateCartUI(); }
+function updateCartQty(key, delta){ if(!cart[key]) return; cart[key].qty = Math.max(1, cart[key].qty + delta); saveCart(); updateCartUI(); }
+
+function updateCartUI(){
+    const items = Object.values(cart);
+    const totalQty = items.reduce((s,i) => s + i.qty, 0);
+    const countEl = document.getElementById('cartCount');
+    countEl.textContent = totalQty;
+    countEl.style.display = totalQty > 0 ? 'flex' : 'none';
+    const cartItems = document.getElementById('cartItems');
+    const cartFooter = document.getElementById('cartFooter');
+    if(items.length === 0){
+        cartItems.innerHTML = '<div class="cart-empty"><i class="fas fa-shopping-cart"></i><h3>Your cart is empty</h3><p>Add items to get started.</p></div>';
+        cartFooter.style.display = 'none'; return;
+    }
+    cartFooter.style.display = 'block';
+    cartItems.innerHTML = items.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-img"><img src="${item.image}" alt="${item.name}"></div>
+            <div class="cart-item-details">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-brand">${item.brand} · ${item.size}</div>
+                <div class="cart-item-row">
+                    <div style="color:var(--bolide-gray);font-size:12px;">Available on request</div>
+                    <div style="display:flex;align-items:center;">
+                        <div class="cart-item-qty">
+                            <button onclick="updateCartQty('${item.id}_${item.size}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button onclick="updateCartQty('${item.id}_${item.size}', 1)">+</button>
+                        </div>
+                        <span class="cart-item-remove" onclick="removeFromCart('${item.id}_${item.size}')" title="Remove"><i class="fas fa-trash"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    const itemCountEl = document.getElementById('cartItemCount');
+    if(itemCountEl) itemCountEl.textContent = totalQty;
+}
+
+function toggleCart(){ document.getElementById('cartDrawer').classList.toggle('active'); document.getElementById('cartOverlay').classList.toggle('active'); document.body.style.overflow = document.getElementById('cartDrawer').classList.contains('active') ? 'hidden' : ''; }
+function confirmOrder(){ showToast('Order quotation requested! We will contact you shortly.'); }
+
+function toggleWishlist(id){
+    if(wishlist.has(id)){ wishlist.delete(id); showToast('Removed from wishlist'); }
+    else { wishlist.add(id); showToast('Added to wishlist'); }
+    saveWishlist(); renderProducts();
+    if(document.getElementById('wishlistSection').classList.contains('active')) renderWishlist();
+}
+
+function filterCategory(cat){
+    currentCategory = cat;
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    if(event && event.target) event.target.classList.add('active');
+    renderProducts();
+}
+function handleSearch(val){ currentSearch = val; renderProducts(); }
+
+function openLogin(){ document.getElementById('loginModal').classList.add('active'); }
+function closeLogin(){ document.getElementById('loginModal').classList.remove('active'); }
+function doLogin(){
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPassword').value;
+    if(!email || !pass){ showToast('Please enter email and password'); return; }
+    if((email === 'company1@bolide.com' || email === 'company2@bolide.com') && pass === 'password123'){
+        currentUser = {email: email, name: email.split('@')[0].toUpperCase()};
+        saveUser(); updateAuthUI(); loadCart(); loadWishlist();
+        closeLogin(); showToast('Welcome back, ' + currentUser.name + '!'); renderProducts();
+    } else { showToast('Invalid credentials. Try demo accounts shown below.'); }
+}
+function logout(){ currentUser = null; saveUser(); cart = {}; wishlist = new Set(); updateAuthUI(); updateCartUI(); renderProducts(); showToast('Signed out successfully'); }
+function updateAuthUI(){
+    const el = document.getElementById('authSection');
+    if(currentUser){ el.innerHTML = '<div class="user-badge"><i class="fas fa-user-circle"></i><span>'+currentUser.name+'</span><span class="logout-link" onclick="logout()">(Logout)</span></div>'; }
+    else { el.innerHTML = '<a href="#" class="signin-btn" onclick="openLogin()"><i class="fas fa-sign-in-alt"></i><span>Sign in</span></a>'; }
+}
+
+function showSection(section){
+    document.querySelectorAll('.nav-center a').forEach(a => a.classList.remove('active'));
+    if(section === 'shop'){
+        document.getElementById('shopSection').style.display = 'block';
+        document.getElementById('wishlistSection').classList.remove('active');
+        document.getElementById('nav-shop').classList.add('active');
+    }
+}
+
+function showToast(msg){
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadUser();
+    renderProducts();
+    document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeProductModal(); closeLogin(); if(document.getElementById('cartDrawer').classList.contains('active')) toggleCart(); }});
+});
+</script>
+</body>
+</html>
